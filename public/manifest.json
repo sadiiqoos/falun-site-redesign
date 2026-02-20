@@ -1,0 +1,106 @@
+{
+  "name": "American Take Away Falun",
+  "short_name": "ATA Falun",
+  "description": "Beställ äkta amerikansk pizza online från American Take Away Falun",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a2850",
+  "theme_color": "#1a2850",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["food", "lifestyle", "shopping"],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Home Screen"
+    },
+    {
+      "src": "/screenshots/menu.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Pizza Menu"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Beställ Pizza",
+      "short_name": "Beställ",
+      "description": "Gå direkt till pizzamenyn",
+      "url": "/#pizzameny",
+      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Mina Ordrar",
+      "short_name": "Ordrar",
+      "description": "Se dina tidigare beställningar",
+      "url": "/orders",
+      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=se.americantakeawayfalun.app",
+      "id": "se.americantakeawayfalun.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/american-take-away-falun/id123456789"
+    }
+  ],
+  "prefer_related_applications": false
+}

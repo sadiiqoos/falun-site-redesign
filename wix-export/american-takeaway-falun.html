@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Take Away Falun - It's Your American Pizza Place</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #8B1538;
+      --primary-dark: #6d1029;
+      --accent: #D4A853;
+      --background: #FFFBF5;
+      --foreground: #1a1a1a;
+      --muted: #f5f0e8;
+      --muted-foreground: #6b6b6b;
+      --card: #ffffff;
+      --card-foreground: #1a1a1a;
+      --border: #e8e0d4;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background-color: #000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-section img {
+      height: 60px;
+      width: auto;
+    }
+
+    .logo-tagline {
+      color: white;
+      font-size: 0.875rem;
+      line-height: 1.3;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #dc2626;
+    }
+
+    .call-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #dc2626;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: background 0.3s;
+    }
+
+    .call-btn:hover {
+      background: #b91c1c;
+    }
+
+    /* Hero Section - Using provided background image */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-image: url('/images/gemini-generated-image-dk1cvxdk1cvxdk1c.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Subtle gradient overlay for text readability */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(26, 45, 92, 0.7), transparent 50%, transparent);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      max-width: 900px;
+    }
+
+    .hero-falun {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      font-style: italic;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero-tagline {
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.875rem;
+      margin-bottom: 2.5rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #dc2626;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: #b91c1c;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 2px solid white;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #1a2d5c;
+    }
+
+    /* Menu Section */
+    .menu-section {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(180deg, var(--background) 0%, var(--muted) 100%);
+    }
+
+    .menu-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted-foreground);
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    .menu-column {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+
+    .menu-category {
+      margin-bottom: 2rem;
+    }
+
+    .menu-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .price-bar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .pizza-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .pizza-item:hover {
+      background: var(--muted);
+      margin: 0 -0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    .pizza-item:last-child {
+      border-bottom: none;
+    }
+
+    .pizza-name {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--foreground);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pizza-ingredients {
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+      margin-top: 0.25rem;
+    }
+
+    .flame-icon {
+      color: #dc2626;
+      animation: flicker 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
+    /* Sides Section */
+    .sides-section {
+      padding: 5rem 1.5rem;
+      background: var(--background);
+    }
+
+    .sides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sides-card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--primary);
+    }
+
+    .sides-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sides-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .sides-item:last-child {
+      border-bottom: none;
+    }
+
+    .sides-name {
+      font-weight: 500;
+    }
+
+    .sides-price {
+      background: var(--muted);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--primary);
+    }
+
+    /* Kids Section */
+    .kids-section {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 3rem 1.5rem;
+      border-radius: 1rem;
+      margin: 2rem auto;
+      max-width: 1400px;
+    }
+
+    .kids-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .kids-subtitle {
+      text-align: center;
+      color: var(--muted-foreground);
+      margin-bottom: 2rem;
+    }
+
+    .kids-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .kids-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .kids-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+    }
+
+    .kids-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .kids-desc {
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+      margin-bottom: 0.5rem;
+    }
+
+    .kids-price {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 5rem 1.5rem;
+      background: #1a1a1a;
+      color: white;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .contact-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-map {
+      border-radius: 1rem;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: #111;
+      color: white;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      height: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-text {
+      color: #888;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="/images/image.png" alt="American Take Away Logo">
+        <span class="logo-tagline">it's your american<br>pizza place</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link active">Hem</a></li>
+          <li><a href="#menu" class="nav-link">Pizzameny</a></li>
+          <li><a href="#your-choice" class="nav-link">Your Choice</a></li>
+          <li><a href="#sides" class="nav-link">Tillbehör</a></li>
+          <li><a href="#contact" class="nav-link">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="tel:023-22044" class="call-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        023-220 44
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-falun">Falun</p>
+      <h1 class="hero-title">American<br>Take Away</h1>
+      <p class="hero-tagline">It's Your American Pizza Place</p>
+      <div class="hero-buttons">
+        <a href="tel:023-22044" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Ring & Beställ: 023-220 44
+        </a>
+        <a href="#meny" class="btn-secondary">Se Menyn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="menu-container">
+      <h2 class="section-title">Vår Meny</h2>
+      <p class="section-subtitle">Tjock, saftig botten med generösa fyllningar. Välj mellan vanlig kant, ostfylld kant eller smaksatt kant!</p>
+      
+      <div class="menu-grid">
+        <!-- Column 1: Standard + Special -->
+        <div class="menu-column">
+          <div class="menu-category">
+            <h3 class="category-header">Standard</h3>
+            <div class="price-bar">Small: 97:- | Medium: 133:- | Large: 185:-</div>
+            <div class="pizza-item">
+              <p class="pizza-name">MARGHARITA</p>
+              <p class="pizza-ingredients">(Tomat, ost)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">TEXAS</p>
+              <p class="pizza-ingredients">(Köttfärssås)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">HAWAII</p>
+              <p class="pizza-ingredients">(Skinka, ananas)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">SEA FOOD</p>
+              <p class="pizza-ingredients">(Räkor, musslor)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">VEGETARIAN</p>
+              <p class="pizza-ingredients">(Färsk paprika, färska champinjoner, lök, oliver)</p>
+            </div>
+          </div>
+          
+          <div class="menu-category">
+            <h3 class="category-header">Special</h3>
+            <div class="price-bar">Small: 120:- | Medium: 168:- | Large: 240:-</div>
+            <div class="pizza-item">
+              <p class="pizza-name">CURRYCHICKEN</p>
+              <p class="pizza-ingredients">(Kyckling, banan, ananas, curry)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">AMERICAN</p>
+              <p class="pizza-ingredients">(Gorgonzola, skinka, kronärtskocka)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">MEXICAN <span class="flame-icon">🔥</span></p>
+              <p class="pizza-ingredients">(Mexikansk köttfärs, grön chili, salsa, lök, jalapeños)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">PEPERONI</p>
+              <p class="pizza-ingredients">(Peperonikorv, färska tomater, extra lager mozzarellaost)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">TROPICAL HOT <span class="flame-icon">🔥</span></p>
+              <p class="pizza-ingredients">(Mexikansk köttfärs, ananas, pfefferoni, grön chili, röd chilipeppar)</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Column 2: Special continued -->
+        <div class="menu-column">
+          <div class="menu-category">
+            <h3 class="category-header">Special</h3>
+            <div class="price-bar">Small: 120:- | Medium: 168:- | Large: 240:-</div>
+            <div class="pizza-item">
+              <p class="pizza-name">BUFFALO</p>
+              <p class="pizza-ingredients">(Buffalomozarella, cocktailtomater, basilika)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">CHICKEN TACO</p>
+              <p class="pizza-ingredients">(Kyckling, salsa, guacamole, gräddfilsdressing, tacochips)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">PARMAPIZZA</p>
+              <p class="pizza-ingredients">(Lufttorkad skinka, rucola, olivolja, färska tomater)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">ORLANDO HONEY</p>
+              <p class="pizza-ingredients">(Bacon, fetaost, färsk vitlök, honung, ruccola)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">GARLIC LOVERS</p>
+              <p class="pizza-ingredients">(Peperonikorv, vitlök, lök, grön chili, pfeferoni)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">KNOCK OUT</p>
+              <p class="pizza-ingredients">(Marinerad kyckling, purjolök, banan, jordnötter, pickles)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">CHICAGO</p>
+              <p class="pizza-ingredients">(8fläskfile, färska champinjoner, bearnaisesås)</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Column 3: Special continued + Exclusive -->
+        <div class="menu-column">
+          <div class="menu-category">
+            <h3 class="category-header">Special</h3>
+            <div class="price-bar">Small: 120:- | Medium: 168:- | Large: 240:-</div>
+            <div class="pizza-item">
+              <p class="pizza-name">EL TACO</p>
+              <p class="pizza-ingredients">(Mexikansk köttfärs, salsa, guacamole, gräddfilsdressing, taco chips)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">KEBABPIZZA</p>
+              <p class="pizza-ingredients">(Kebabkött, lök, tomater, pfeferoni, isbergssallad och kebabdressing)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">RED DEVIL <span class="flame-icon">🔥</span><span class="flame-icon">🔥</span></p>
+              <p class="pizza-ingredients">(Köttfärssås, räkor, färska champinjoner, röd chillipeppar)</p>
+            </div>
+            <div class="pizza-item">
+              <p class="pizza-name">VEGI LOVERS</p>
+              <p class="pizza-ingredients">(Halloumi ost, spenat, sparris, ruccola, pinjenötter, honung)</p>
+            </div>
+          </div>
+          
+          <div class="menu-category">
+            <h3 class="category-header">Exclusive</h3>
+            <div class="price-bar">Small: 145:- | Medium: 198:- | Large: 280:-</div>
+            <div class="pizza-item">
+              <p class="pizza-name">OXFILE</p>
+              <p class="pizza-ingredients">(Med chili, vitlök, cocktailtomater, ruccola, parmesanost)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Your Choice Section -->
+  <section id="your-choice" class="your-choice-section">
+    <h2 class="section-title">Your Choice</h2>
+    <p class="section-subtitle">Create your own perfect pizza with our fresh toppings!</p>
+    
+    <div class="sides-grid">
+      <div class="sides-card">
+        <h3 class="sides-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v8M12 6H6m6 0H18"/></svg>
+          Choose Size
+        </h3>
+        <div class="sides-item">
+          <span class="sides-name">Small (4 toppings)</span>
+          <span class="sides-price">97:-</span>
+        </div>
+        <div class="sides-item">
+          <span class="sides-name">Medium (6 toppings)</span>
+          <span class="sides-price">133:-</span>
+        </div>
+        <div class="sides-item">
+          <span class="sides-name">Large (8 toppings)</span>
+          <span class="sides-price">185:-</span>
+        </div>
+      </div>
+      
+      <div class="sides-card">
+        <h3 class="sides-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Toppings
+        </h3>
+        <p style="font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.8;">
+          Ananas, Bacon, Banan, Basilika, Bearnaisesås, Curry, Champinjoner, Cocktailtomater, Fetaost, Gorgonzola, Grön chili, Guacamole, Halloumi, Honung, Jalapeños, Jordnötter, Kebabdressing, Kebabkött, Köttfärs, Köttfärssås, Kronärtskocka, Kyckling, Lök, Mexikansk köttfärs, Mozzarella, Musslor, Oliver, Paprika, Parmesan, Peperonikorv, Pfefferoni, Pickles, Pinjenötter, Purjolök, Parmaskinka, Röd chilipeppar, Räkor, Ruccola, Salsa, Soltorkade tomater, Sparris, Spenat, Tacochips, Vitlök, Ägg, 8fläskfile, Oxfile
+        </p>
+      </div>
+      
+      <div class="sides-card">
+        <h3 class="sides-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+          Crust Type
+        </h3>
+        <div class="sides-item">
+          <span class="sides-name">Regular crust</span>
+          <span class="sides-price">Included</span>
+        </div>
+        <div class="sides-item">
+          <span class="sides-name">Cheese stuffed crust</span>
+          <span class="sides-price">+20:-</span>
+        </div>
+        <div class="sides-item">
+          <span class="sides-name">Garlic crust</span>
+          <span class="sides-price">+15:-</span>
+        </div>
+        <div class="sides-item">
+          <span class="sides-name">Herb crust</span>
+          <span class="sides-price">+15:-</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tillbehör Section -->
+  <section class="sides-section" id="sides" style="background: var(--muted);">
+    <div class="menu-container">
+      <h2 class="section-title">Tillbehör</h2>
+      
+      <div class="sides-grid">
+        <div class="sides-card">
+          <h3 class="sides-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Drycker
+          </h3>
+          <div class="sides-item">
+            <span class="sides-name">Coca-Cola 33cl</span>
+            <span class="sides-price">25:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Coca-Cola Zero 33cl</span>
+            <span class="sides-price">25:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Fanta 33cl</span>
+            <span class="sides-price">25:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Sprite 33cl</span>
+            <span class="sides-price">25:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Vatten 50cl</span>
+            <span class="sides-price">20:-</span>
+          </div>
+        </div>
+        
+        <div class="sides-card">
+          <h3 class="sides-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+            Såser
+          </h3>
+          <div class="sides-item">
+            <span class="sides-name">Vitlökssås</span>
+            <span class="sides-price">15:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Bearnaisesås</span>
+            <span class="sides-price">15:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Kebabsås</span>
+            <span class="sides-price">15:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Chipotlesås</span>
+            <span class="sides-price">15:-</span>
+          </div>
+        </div>
+        
+        <div class="sides-card">
+          <h3 class="sides-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            Extra
+          </h3>
+          <div class="sides-item">
+            <span class="sides-name">Extra ost</span>
+            <span class="sides-price">20:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Extra topping</span>
+            <span class="sides-price">15:-</span>
+          </div>
+          <div class="sides-item">
+            <span class="sides-name">Bröd med vitlökssmör</span>
+            <span class="sides-price">35:-</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Kids Club -->
+      <div class="kids-section">
+        <h3 class="kids-title">Kids Club</h3>
+        <p class="kids-subtitle">För våra yngsta gäster (under 12 år)</p>
+        <div class="kids-grid">
+          <div class="kids-item">
+            <div class="kids-number">1</div>
+            <p class="kids-name">Barnpizza Margharita</p>
+            <p class="kids-desc">Tomat, ost</p>
+            <p class="kids-price">79:-</p>
+          </div>
+          <div class="kids-item">
+            <div class="kids-number">2</div>
+            <p class="kids-name">Barnpizza Hawaii</p>
+            <p class="kids-desc">Skinka, ananas</p>
+            <p class="kids-price">79:-</p>
+          </div>
+          <div class="kids-item">
+            <div class="kids-number">3</div>
+            <p class="kids-name">Barnpizza Kyckling</p>
+            <p class="kids-desc">Kyckling, curry</p>
+            <p class="kids-price">79:-</p>
+          </div>
+          <div class="kids-item">
+            <div class="kids-number">4</div>
+            <p class="kids-name">Barnpizza Peperoni</p>
+            <p class="kids-desc">Peperonikorv, ost</p>
+            <p class="kids-price">79:-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Kontakta Oss</h2>
+        <div class="contact-details">
+          <div class="contact-item">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <strong>Adress</strong><br>
+              Östra Hamngatan 18<br>
+              791 71 Falun
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <strong>Telefon</strong><br>
+              023-220 44
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <strong>Öppettider</strong><br>
+              Alla dagar: 15:00 - 21:00
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1788.0977776!2d15.6272!3d60.6067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNjDCsDM2JzI0LjEiTiAxNcKwMzcnMzcuOSJF!5e0!3m2!1sen!2sse!4v1234567890" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <img src="/images/image.png" alt="American Take Away Logo" class="footer-logo">
+    <p class="footer-text">&copy; 2025 American Take Away Falun. Alla rättigheter förbehållna.</p>
+  </footer>
+</body>
+</html>
