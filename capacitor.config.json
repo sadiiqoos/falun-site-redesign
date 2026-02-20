@@ -1,0 +1,33 @@
+{
+  "appId": "se.americantakeawayfalun.app",
+  "appName": "American Take Away Falun",
+  "webDir": "out",
+  "server": {
+    "androidScheme": "https",
+    "iosScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#1a2850",
+      "showSpinner": false,
+      "androidSpinnerStyle": "small",
+      "spinnerColor": "#ffffff"
+    },
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#1a2850"
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#1a2850"
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "backgroundColor": "#1a2850"
+  }
+}
